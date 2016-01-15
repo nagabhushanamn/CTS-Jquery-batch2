@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Index</title>
+<link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body>
+
+	<div class="container">
+
+		<div class="page-header">Ques</div>
+
+		<button id="teachBtn" class="btn btn-primary">Teach jQuery</button>
+
+		<hr />
+
+
+
+	</div>
+
+	<script type="text/javascript" src="jquery-1.11.3.js"></script>
+
+	<script type="text/javascript">
+		
+		var tnr = {
+			tnrName : 'Nag',
+			doTeach : function() {
+				console.log(this.tnrName + " teaching jQuery"); // Nag teahing jQuery
+			}
+		};
+
+		var newTnr = {
+			tnrName : 'Peng Gu'
+		};
+
+		// way-1
+
+		$("#teachBtn").on('click', tnr.doTeach.bind(newTnr));
+
+		// way-2
+
+		/* $("#teachBtn").on('click',function(event){
+			//this  --> teachBtn
+			tnr.doTeach();  // New Execuation Context..
+		}); */
+		
+		
+		//-------------------------------------------------------------------------------
+		
+		// Never exeute business-function using DOM element's execution context on event.
+		
+		
+		
+	</script>
+
+</body>
+</html>

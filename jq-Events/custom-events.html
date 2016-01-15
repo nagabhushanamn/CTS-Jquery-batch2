@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="css/bootstrap.css" rel="stylesheet">
+</head>
+<body>
+
+	<div class="container">
+
+		<div class="page-header">JS - custom events</div>
+		<span class="badge">see console</span>
+		<hr />
+
+		<form id="msgBox">
+			<input type="text" name="message" id="msg">
+			<button type="submit" class="btn btn-default">Post</button>
+		</form>
+
+		<hr />
+
+
+
+	</div>
+
+	<script type="text/javascript" src="jquery-1.11.3.js"></script>
+
+	<script type="text/javascript">
+	
+	$(function() {
+
+		$("#msgBox").submit(function(event){
+			
+			event.preventDefault();
+			var msg=$('#msg').val();
+			
+			if(msg.trim()!==""){	
+				
+				// emiting custom-event  ==> 'new-message'
+				$.event.trigger({
+					type : 'new-message',
+					message : msg,
+					time : new Date()
+				});
+				
+			}
+		
+		});
+		
+		
+		$(document).on('new-message', newMessageHandler);
+
+		function newMessageHandler(event) {
+			console.log("New Message : " + event.message + "- "
+					+ event.time.toLocaleString() + " "
+					+ event.currentTarget.nodeName);
+			//console.dir(event);
+		}
+
+	});
+
+		
+		
+	</script>
+
+</body>
+</html>
